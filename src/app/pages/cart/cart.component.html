@@ -1,0 +1,15 @@
+<mat-card class="max-w-7xl mx-auto" *ngIf="cart.items.length; else emptyCart">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+</mat-card>
+<ng-template #emptyCart>
+  <mat-card class="max-w-7xl mx-auto">
+    <p>
+      Your Cart is Empty
+      <button mat-raised-button routerLink="/home">Shop</button>
+    </p>
+  </mat-card>
+</ng-template>
