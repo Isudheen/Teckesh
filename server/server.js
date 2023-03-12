@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./vars/config.env" });
 
 const app = express();
 app.use(express.static("public"));
@@ -7,9 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
 
-const stripe = require("stripe")(
-  "sk_test_51M2AdzSE44uz4WeNBfIGwf2M2FnX0ANqKIRFvZakVBdGCebOtcIh5HmT6gsQnf6Qy05xUBhSuccUBRy1QkC3H6Hk00TLRXAHMQ"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.post("/checkout", async (req, res, next) => {
   try {
